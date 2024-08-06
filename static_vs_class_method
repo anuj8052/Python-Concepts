@@ -1,0 +1,56 @@
+# In Python's object-oriented programming (OOP), both static methods and class methods are used for different purposes, and understanding when to use each can help you design cleaner and more modular code.
+
+### Static Method (`@staticmethod`)
+
+# - **Purpose**: A static method is a method that belongs to the class, but it doesn't have access to the class or instance itself. It's just like a regular function but it lives in the class's namespace.
+# - **When to use**: Use a static method when you need a utility function that doesn't need access to the class or instance. It's often used to perform tasks that are relevant to the class but don't require any interaction with the class attributes or instance attributes.
+
+# **Example**:
+# ```python
+class MathOperations:
+    @staticmethod
+    def add_numbers(a, b):
+        return a + b
+
+# Usage
+result = MathOperations.add_numbers(5, 10)
+print(result)  # Output: 15
+# ```
+
+### Class Method (`@classmethod`)
+
+# - **Purpose**: A class method is a method that has access to the class itself through the `cls` parameter, and it can modify class state that applies across all instances of the class.
+# - **When to use**: Use a class method when you need to access or modify class-level attributes or when you want to create factory methods that return instances of the class.
+
+# **Example**:
+# ```python
+class Employee:
+    raise_amount = 1.05  # Class attribute
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    @classmethod
+    def set_raise_amount(cls, amount):
+        cls.raise_amount = amount
+
+    def apply_raise(self):
+        self.salary *= self.raise_amount
+
+# Usage
+Employee.set_raise_amount(1.10)  # Changes raise_amount for all instances
+
+emp1 = Employee('Alice', 50000)
+emp2 = Employee('Bob', 60000)
+
+emp1.apply_raise()
+emp2.apply_raise()
+
+print(emp1.salary)  # Output: 55000
+print(emp2.salary)  # Output: 66000
+# ```
+
+### Summary
+# - **Static methods**: Use when you need a function that doesn't interact with the class or its instances.
+# - **Class methods**: Use when you need to modify or interact with the class itself (like class attributes) or to provide alternative constructors for the class.

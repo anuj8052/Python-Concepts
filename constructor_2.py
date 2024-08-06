@@ -37,7 +37,7 @@ item1 = Item("phone", 75, 5)
 
 print(Item.all)
 
-# accessing the elements vlaues from the list
+# accessing the elements values from the list
 # for instance in Item.all:
 #     # print(instance.name, instance.price, instance.quantity)
 #     print(instance.name)
